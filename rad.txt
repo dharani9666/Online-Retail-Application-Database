@@ -1,0 +1,73 @@
+CREATING USERS TABLE AND INSERTING DATA 
+
+1) CREATE TABLE Users (
+     UserID number(20) primary key,
+     Username varchar(50) not null ,
+     Password varchar(100) not null,
+     Email varchar(100) UNIQUE,
+     FirstName varchar(50),
+     LastName Varchar(50) not null);
+
+
+INSERT ALL
+    INTO users VALUES (113, 'krishna', 'krishna13233', 'krish12@gmail.com', 'krishna', 'chowdary')
+    INTO users VALUES (114, 'vasavi', 'vassu', 'vasavi@gmail.com', 'vasavi', 'bandari')
+    INTO users VALUES (115, 'naveen', 'qwerty123', 'naveen564@gmail.com', 'naveen', 'kondapalli')
+    INTO users  VALUES (116, 'grace', 'asdfr123', 'grace@gmail.com', 'grace', 'jones')
+    INTO users VALUES (117, 'joseph', 'zsxfu8657', 'joseph876@gmail.com', 'joseph', 'hoiiy')
+    INTO users VALUES (118, 'daniel', 'kjhg8765', 'daniel456@gmail.com', 'daniel', 'wilson')
+    INTO users VALUES (119, 'allen', 'wertr174', 'allen@gmail.com', 'allen', 'mascow')
+SELECT * FROM dual;
+
+-----------------------------------------------------------------------------------------------------------------------------------
+2)create table product(productid number(25) primary key,
+                      productname varchar(50) not null,
+                      price decimal(25,2) not null,
+                      category varchar(50),
+                      description varchar(500));
+
+INSERT ALL
+    INTO Product VALUES (1, 'smartwatch', 900.89, 'electronics', 'latest model smartwatch')
+    INTO Product VALUES (2, 'digital weight machine', 899.99, 'electronics', 'high performance')
+    INTO Product VALUES (3, 'smart phone', 1000.99, 'electronics', 'trending model')
+    INTO Product VALUES (4, 'novels', 552.76, 'books', 'best sellers')
+    INTO Product VALUES (5, 'laptop', 999.99, 'electronics', 'latest model laptop')
+    INTO Product VALUES (6, 'camera', 876.78, 'electronics', 'high quality')
+SELECT * FROM dual;
+
+---------------------------------------------------------------------------------------------------------------------------------
+3) create table neworders(orderid int primary key,
+                     userid number(20) not null,
+                     orderdate date,
+                     amount int,
+                     foreign key(userid) references users(userid));
+
+INSERT ALL
+    INTO newOrders VALUES (1234, 113, TO_DATE('24-04-2024', 'DD-MM-YYYY'), 200)
+    INTO newOrders VALUES (1235, 114, TO_DATE('18-02-2024', 'DD-MM-YYYY'), 135)
+    INTO newOrders VALUES (1236, 115, TO_DATE('10-05-2024', 'DD-MM-YYYY'), 155)
+    INTO newOrders VALUES (1237, 116, TO_DATE('30-03-2024', 'DD-MM-YYYY'), 345)
+    INTO newOrders VALUES (1238, 117, TO_DATE('21-02-2024', 'DD-MM-YYYY'), 543)
+    INTO newOrders VALUES (1239, 118, TO_DATE('07-05-2024', 'DD-MM-YYYY'), 897)
+    INTO newOrders VALUES (1240, 119, TO_DATE('13-03-2024', 'DD-MM-YYYY'), 653)
+    INTO newOrders VALUES (1241, 120, TO_DATE('28-04-2024', 'DD-MM-YYYY'), 543)
+SELECT * FROM dual;
+------------------------------------------------------------------------------------------------------------------------------
+4)create table 	neworderitems(orderitemid int primary key,
+                         orderid int,
+                         productid number(25) not null,
+                         quantity int not null,
+                         price decimal(25,2),
+                         foreign key(orderid) references NEWorders(orderid),
+                         foreign key(productid) references product(productid));
+
+INSERT ALL
+    INTO newOrderitems VALUES (12, 1234, 1, 2, 900.89)
+    INTO newOrderitems VALUES (13, 1235, 2, 1, 899.99)
+    INTO newOrderitems VALUES (14, 1236, 3, 1, 1000.99)
+    INTO newOrderitems VALUES (15, 1237, 4, 2, 552.76)
+    INTO newOrderitems VALUES (16, 1238, 5, 1, 999.99)
+    INTO newOrderitems VALUES (17, 1239, 6, 1, 876.78)
+    INTO newOrderitems VALUES (18, 1240, 1, 2, 900.89)
+    INTO newOrderitems VALUES (19, 1241, 2, 1, 899.99)
+SELECT * FROM dual;
